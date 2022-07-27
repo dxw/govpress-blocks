@@ -8,5 +8,8 @@
             "homepage": "https://www.dxw.com"
         }
     ],
-    "license": "MIT"
+    "license": "MIT",
+    "require-dev": {
+        "dxw/php-cs-fixer-config": "^2.0"
+    }
 }
