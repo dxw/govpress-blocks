@@ -9,7 +9,13 @@
         }
     ],
     "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Dxw\\GovPressBlocks\\": "src/"
+        }
+    },
     "require-dev": {
-        "dxw/php-cs-fixer-config": "^2.0"
-    }
+        "dxw/php-cs-fixer-config": "^2.0",
+        "kahlan/kahlan": "^5.2"
+    }   
 }
