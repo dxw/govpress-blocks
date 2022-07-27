@@ -1,0 +1,12 @@
+{
+    "name": "dxw/govpress-blocks",
+    "description": "Reusable custom blocks for WordPress",
+    "authors": [
+        {
+            "name": "dxw",
+            "email": "team@govpress.com",
+            "homepage": "https://www.dxw.com"
+        }
+    ],
+    "license": "MIT"
+}
