@@ -19,6 +19,7 @@
         "kahlan/kahlan": "^5.2"
     },
     "require": {
-        "stoutlogic/acf-builder": "^1.12"
+        "stoutlogic/acf-builder": "^1.12",
+        "php": "^7.4||^8.0"
     }
 }
