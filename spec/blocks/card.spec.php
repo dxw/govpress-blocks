@@ -14,6 +14,17 @@ describe(\Dxw\GovPressBlocks\Blocks\Card::class, function () {
         expect($this->card)->toBeAnInstanceOf(\Dxw\GovPressBlocks\Blocks\iBlock::class);
     });
 
+    describe('->register()', function () {
+        it('adds the actions', function () {
+            allow('add_action')->toBeCalled();
+            expect('add_action')->toBeCalled()->times(2);
+            expect('add_action')->toBeCalled()->once()->with('acf/init', [$this->card, 'registerBlock']);
+            expect('add_action')->toBeCalled()->once()->with('acf/init', [$this->card, 'registerFields']);
+
+            $this->card->register();
+        });
+    });
+
     describe('->registerBlock()', function () {
         it('registers the card block', function () {
             allow('function_exists')->toBeCalled()->andReturn(true);
