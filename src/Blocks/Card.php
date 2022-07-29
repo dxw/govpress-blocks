@@ -55,7 +55,6 @@ class Card implements iBlock
                     'default_value' => 'simple',
                     'return_format' => 'Value'
                 ])
-                ->addImage('image')
                 ->addLink('link')
                 ->addTextarea('description')
                 ->conditional('card_style', '==', 'full')                
