@@ -12,7 +12,10 @@ class Card implements iBlock
 
     public function __construct(array $args)
     {
-        $this->args = $args;
+        $defaults = [
+            'template' => ''
+        ];
+        $this->args = wp_parse_args($args, $defaults);
     }
 
     public function register()
@@ -57,7 +60,7 @@ class Card implements iBlock
                 ])
                 ->addLink('link')
                 ->addTextarea('description')
-                ->conditional('card_style', '==', 'full')                
+                ->conditional('card_style', '==', 'full')
                 ->setLocation('block', '==', 'acf/dxw-govpress-blocks-card');
 
             acf_add_local_field_group($fields->build());
@@ -66,6 +69,10 @@ class Card implements iBlock
 
     public function render()
     {
-        load_template(dirname(__DIR__, 2) . $this->templatePath, false);
+        if ($this->args['template'] == '') {
+            load_template(dirname(__DIR__, 2) . $this->templatePath, false);
+        } else {
+            load_template($this->args['template'], false);
+        }
     }
 }

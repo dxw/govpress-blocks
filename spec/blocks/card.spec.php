@@ -6,6 +6,7 @@ use function Kahlan\expect;
 
 describe(\Dxw\GovPressBlocks\Blocks\Card::class, function () {
     beforeEach(function () {
+        allow('wp_parse_args')->toBeCalled();
         $this->card = new \Dxw\GovPressBlocks\Blocks\Card([]);
     });
 
@@ -47,13 +48,33 @@ describe(\Dxw\GovPressBlocks\Blocks\Card::class, function () {
     });
 
     describe('->render()', function () {
-        it('loads the default template', function () {
-            allow('dirname')->toBeCalled();
-            expect('dirname')->toBeCalled()->once()->with(\Kahlan\Arg::toBeA('string'), 2);
-            allow('load_template')->toBeCalled();
-            expect('load_template')->toBeCalled()->once();
-
-            $this->card->render();
+        context('no template was passed in the args', function () {
+            it('loads the default template', function () {
+                allow('wp_parse_args')->toBeCalled()->andReturn([
+                    'template' => ''
+                ]);
+                $this->card = new \Dxw\GovPressBlocks\Blocks\Card([]);
+                allow('dirname')->toBeCalled();
+                expect('dirname')->toBeCalled()->once()->with(\Kahlan\Arg::toBeA('string'), 2);
+                allow('load_template')->toBeCalled();
+                expect('load_template')->toBeCalled()->once();
+    
+                $this->card->render();
+            });
+        });
+        context('no template was passed in the args', function () {
+            it('loads the default template', function () {
+                allow('wp_parse_args')->toBeCalled()->andRun(function ($args, $defaultArgs) {
+                    return $args;
+                });
+                $this->card = new \Dxw\GovPressBlocks\Blocks\Card([
+                    'template' => 'foo.php'
+                ]);
+                allow('load_template')->toBeCalled();
+                expect('load_template')->toBeCalled()->once()->with('foo.php', false);
+    
+                $this->card->render();
+            });
         });
     });
 });
