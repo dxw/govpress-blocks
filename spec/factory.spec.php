@@ -7,6 +7,7 @@ describe('\Dxw\GovPressBlocks\Factory::class', function () {
         it('returns an instance of a block if it exists, and throws an exception if you try to create a block twice', function () {
             foreach (\Dxw\GovPressBlocks\Factory::BLOCKS as $blockName => $className) {
                 allow($className)->toBeOk();
+                allow($className)->toReceive('__construct');
                 allow($className)->toReceive('register');
                 $result = \Dxw\GovPressBlocks\Factory::create($blockName, []);
                 expect($result)->toBeAnInstanceOf($className);
