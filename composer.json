@@ -8,5 +8,18 @@
             "homepage": "https://www.dxw.com"
         }
     ],
-    "license": "MIT"
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Dxw\\GovPressBlocks\\": "src/"
+        }
+    },
+    "require-dev": {
+        "dxw/php-cs-fixer-config": "^2.0",
+        "kahlan/kahlan": "^5.2"
+    },
+    "require": {
+        "stoutlogic/acf-builder": "^1.12",
+        "php": "^7.4||^8.0"
+    }
 }
